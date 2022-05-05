@@ -1,13 +1,12 @@
 import React from "react";
 import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react';
-import ProductInformation from './ProductInformation.jsx';
+import { render, cleanup, screen, waitFor } from '@testing-library/react';
+import AdditionalProductInfo from './AdditionalProductInfo.jsx';
 import regeneratorRuntime from "regenerator-runtime";
 
-
-describe.only('ProductInformation', () => {
-  it('should have "ProductInformation" Title', () => {
-    const information = {
+describe('AdditionalProductInfo', () => {
+  it('should render additonal product information such as slogan and features', () => {
+    const productInfo = {
       "id": 64620,
       "campus": "hr-rpp",
       "name": "Camo Onesie",
@@ -28,10 +27,10 @@ describe.only('ProductInformation', () => {
           }
       ]
     };
-    const ratings = '3.0';
-    const reviewsCount = 100;
-    render(<ProductInformation information={information} ratings={ratings} reviewsCount={reviewsCount} />);
-    const title = screen.getByText('ProductInformation');
-    expect(title).toBeInTheDocument();
+
+    render(<AdditionalProductInfo productInfo={productInfo}  />);
+    const slogan = screen.getByText('The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.');
+    expect(slogan).toBeInTheDocument();
   })
+
 });
