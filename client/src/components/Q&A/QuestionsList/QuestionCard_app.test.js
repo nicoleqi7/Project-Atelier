@@ -2,6 +2,7 @@ import React from 'react'
 import {render} from '@testing-library/react'
 import {jsdom} from '@testing-library/jest-dom'
 import QuestionCard from './QuestionCard_app.jsx';
+import regeneratorRuntime from "regenerator-runtime";
 // require("babel-core/register");
 // require("babel-polyfill");
 
@@ -44,7 +45,6 @@ const testQuestionOne =
 
 
 describe('Question Component Unit Tests', () => {
-
   it('renders and Add Answer button', () => {
     const {getByText} = render(
       <QuestionCard
@@ -54,3 +54,32 @@ describe('Question Component Unit Tests', () => {
     expect(getByText(/add Answer/)).toBeInTheDocument();
   })
 })
+
+describe('Question Component Unit Tests', () => {
+  it('renders and Add Answer button', () => {
+    const {getByText} = render(
+      <QuestionCard question={testQuestionOne}
+      />
+    )
+    expect(getByText(/See more answers/)).toBeInTheDocument();
+  })
+})
+
+
+describe("QuestionCard", () => {
+  it('should render the class of "question-wrap" and "question"', () => {
+    const { container } = render(<QuestionCard question={testQuestionOne} />);
+    expect(container.getElementsByClassName("question-wrap").length).toBe(1);
+    expect(container.getElementsByClassName("question").length).toBe(1);
+  });
+});
+
+describe("QuestionCard", () => {
+  it('should render the class of "right" and "right_item"', () => {
+    const { container } = render(<QuestionCard question={testQuestionOne} />);
+    expect(container.getElementsByClassName("right").length).toBe(3);
+    expect(container.getElementsByClassName("right_item").length).toBe(7);
+  });
+});
+
+

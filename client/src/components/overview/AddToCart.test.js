@@ -31,5 +31,4 @@ describe('AddToCart', () => {
     const starButton = screen.getByText('☆');
     expect(starButton).toBeInTheDocument();
   })
-
 });

@@ -27,8 +27,8 @@ class QuestionsList extends Component {
   }
 
   getQAList = () => {
-    // console.log('------------!!');
-    // console.log(this, product_id);
+    console.log('------------!!');
+    console.log(this, product_id);
     const {product_id} = this.props;
 
     getQAList(product_id).then((res) => {
@@ -102,7 +102,7 @@ class QuestionsList extends Component {
     const { currentQuestions, questions, showMoreQuestions } = this.state;
 
       return (
-      <div>
+      <div className="QAList">
         <SearchBar onSearch={this.onSearch}></SearchBar>
         <p data-testid="header">
           Here are the questions for this product:
