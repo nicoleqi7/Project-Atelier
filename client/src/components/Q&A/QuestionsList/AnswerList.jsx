@@ -17,36 +17,53 @@ class AnswerList extends React.Component {
       showImgWindow: false,
       imgUrl: "",
       reportStatus: "Report",
+      showMoreAnswers: true,
     };
+    console.log(this.state.answersArray);
   }
 
 
   onSeeMoreAnswersClick = () => {
     const { answersArray, tempAnswers } = this.state;
-    this.setState({
-      tempAnswers: answersArray,
-    });
+    const temp = answersArray.slice(
+      tempAnswers.length,
+      tempAnswers.length + 2
+    );
+
+    this.setState(
+      {
+        tempAnswers: [...tempAnswers, ...temp],
+      },
+      () => {
+        if (this.state.tempAnswers.length >= answersArray.length) {
+          this.setState({
+            showMoreAnswers: false,
+          });
+        }
+      }
+    );
   };
+
 
   onCollapseAnswersClick = () => {
     const { answersArray, tempAnswers } = this.state;
     this.setState({
       tempAnswers: answersArray.slice(0, 2),
+      showMoreAnswers: true,
     });
   };
 
   render() {
-    let { answersArray, tempAnswers } = this.state;
+    let { answersArray, tempAnswers, showMoreAnswers } = this.state;
     return (
       <div>
         {tempAnswers.map((item, index) => {
           item.reported = false;
-
           return <Answer key={item.id} answer={item} />;
         })}
         {answersArray.length > 2 && (
           <div>
-            {tempAnswers.length <= 2 ? (
+            {showMoreAnswers ? (
               <button
                 style={{ margin: "10px 0" }}
                 onClick={this.onSeeMoreAnswersClick}

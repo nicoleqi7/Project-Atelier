@@ -2,3 +2,9 @@ node_modules
 client/dist/bundle.js
 config.js
 coverage
+QandA_app.test.js
+SearchBar.test.js
+AnswerList.test.js
+QuestionCard_app.test.js
+QuestionsList.test.js
+window.test.js

@@ -56,14 +56,12 @@ export default class Answer extends Component {
 
   onVote = () => {
     let { answer } = this.state;
-    // console.log("line23:", this.props.answer.helpfulness, answer.helpfulness);
     if (this.props.answer.helpfulness !== answer.helpfulness) {
       return;
     } else {
       answer.helpfulness = answer.helpfulness + 1;
     }
 
-    // console.log(answer);
     this.setState({
       answer,
     });
@@ -83,7 +81,7 @@ export default class Answer extends Component {
         </p>
 
         <div className="answerer_info" fontWeight="150">
-          by:{answer.answerer_name}&nbsp; | Date: {date} <br></br>
+          by:{answer.answerer_name}&nbsp; | Date: {date.slice(0, 9)} <br></br>
         </div>
 
         {answer.photos.length != 0 && (
